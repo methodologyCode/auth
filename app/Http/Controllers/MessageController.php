@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Message;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
-use App\User;
-use App\Message;
 
 class MessageController extends Controller
 {
@@ -20,7 +20,8 @@ class MessageController extends Controller
             'content' => 'required',
         ]);
 
-        $receiver = User::where('name', $request->receiver_username)->firstOrFail();
+        $receiver = User::where('name',
+                                $request->receiver_username)->firstOrFail();
 
         Message::create([
             'sender_id' => Auth::id(),
@@ -28,7 +29,8 @@ class MessageController extends Controller
             'content' => $request->content,
         ]);
 
-        return redirect()->back()->with('success', 'Message sent successfully.');
+        return redirect()->back()->with('success',
+                                        'Message sent successfully.');
     }
 
     public function showMessages()
@@ -37,6 +39,7 @@ class MessageController extends Controller
         $sentMessages = $user->sentMessages;
         $receivedMessages = $user->receivedMessages;
 
-        return view('messages.show', compact('sentMessages', 'receivedMessages'));
+        return view('messages.show', compact('sentMessages',
+                                             'receivedMessages'));
     }
 }

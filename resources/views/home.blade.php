@@ -8,7 +8,7 @@
         flex-direction: column;
         align-items: center;
         text-align: center;
-        margin-top: 50px; /* Adjust the margin as needed */
+        margin-top: 50px;
     }
 
     h1, h2, p {

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
@@ -19,7 +19,7 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        if(\Auth::attempt($request->only('email','password'))){
+        if (\Auth::attempt($request->only('email', 'password'))) {
             return redirect('home');
         }
 
@@ -40,12 +40,12 @@ class AuthController extends Controller
         ]);
 
         User::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=> \Hash::make($request->password)
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => \Hash::make($request->password),
         ]);
 
-        if(\Auth::attempt($request->only('email','password'))){
+        if (\Auth::attempt($request->only('email', 'password'))) {
             return redirect('home');
         }
 
@@ -58,7 +58,8 @@ class AuthController extends Controller
         return view('home', compact('existingUsers'));
     }
 
-    public function logout(){
+    public function logout()
+    {
         \Session::flush();
         \Auth::logout();
         return redirect('');
