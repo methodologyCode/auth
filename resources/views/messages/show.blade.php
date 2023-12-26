@@ -46,8 +46,10 @@
     <h1>Мои сообщения</h1>
 
     <div class="tabs">
-        <div class="tab" onclick="showMessages('sent')">Sent Messages</div>
-        <div class="tab" onclick="showMessages('received')">Received Messages</div>
+        <div class="tab"
+             onclick="showMessages('sent')">Sent Messages</div>
+        <div class="tab"
+             onclick="showMessages('received')">Received Messages</div>
     </div>
 
     <div id="sent-messages" style="display: block;">
@@ -70,16 +72,23 @@
         @endforeach
     </div>
 
+    <div>
+        <a href="/home">Вернуться назад</a>
+    </div>
+
     <script>
         function showMessages(tab) {
-            document.getElementById('sent-messages').style.display = tab === 'sent' ? 'block' : 'none';
-            document.getElementById('received-messages').style.display = tab === 'received' ? 'block' : 'none';
+            const sentMessages = document.getElementById('sent-messages');
+            const receivedMessages = document.getElementById('received-messages');
 
-            document.querySelectorAll('.tab').forEach(function(element) {
-                element.classList.remove('active');
-            });
+            sentMessages.style.display = tab === 'sent' ? 'block' : 'none';
+            receivedMessages.style.display = tab === 'received' ? 'block' : 'none';
 
-            document.querySelector('.tab.' + tab).classList.add('active');
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(element => element.classList.remove('active'));
+
+            const activeTab = document.querySelector('.tab.' + tab);
+            activeTab.classList.add('active');
         }
     </script>
 

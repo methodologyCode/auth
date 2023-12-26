@@ -61,7 +61,7 @@
 
     <h1>Welcome, {{ Auth::user()->name }}</h1>
 
-    <p><a href="/">Home</a></p>
+    <p><a href="/">Главная</a></p>
 
     <h2>Messages</h2>
 
