@@ -34,7 +34,7 @@ class AuthControllerTest extends TestCase
             'password' => 'password',
         ]);
 
-        $response->assertRedirect('/home');
+        $response->assertRedirect('home');
         $this->assertAuthenticatedAs($user);
     }
 
@@ -45,7 +45,7 @@ class AuthControllerTest extends TestCase
             'password' => 'invalidpassword',
         ]);
 
-        $response->assertRedirect('/login');
+        $response->assertRedirect('login');
         $this->assertGuest();
     }
 
@@ -66,7 +66,7 @@ class AuthControllerTest extends TestCase
             'password_confirmation' => 'password',
         ]);
 
-        $response->assertRedirect('/home');
+        $response->assertRedirect('home');
         $this->assertAuthenticated();
     }
 
